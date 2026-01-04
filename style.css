@@ -1,0 +1,324 @@
+/* style.css (FINAL)
+   Full image (no crop) + same size containers + 3D effects (no libraries)
+*/
+
+:root{
+  --bg:#0b0f17;
+  --card:#111827;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --accent:#60a5fa;
+  --border:#1f2937;
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;
+  background:var(--bg);
+  color:var(--text)
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1000px;margin:0 auto;padding:24px}
+.section{padding:40px 0;border-top:1px solid var(--border)}
+h1{font-size:44px;line-height:1.1;margin:32px 0 12px}
+h2{font-size:28px;margin:0 0 18px}
+h3{margin:0 0 10px}
+.accent{color:var(--accent)}
+.muted{color:var(--muted)}
+
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;letter-spacing:0.5px}
+.links a{margin-left:16px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+
+.hero{padding:40px 0 10px}
+.subtitle{max-width:680px;color:var(--muted);font-size:18px}
+.cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(96,165,250,0.12);
+}
+.btn:hover{border-color:rgba(96,165,250,0.5)}
+.btn.secondary{background:transparent}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  min-height:220px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+  overflow:hidden;
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(96,165,250,0.35);
+}
+
+.card-link{cursor:pointer}
+.card-link .card-links{color:var(--accent)}
+.card-link:hover .card-links{opacity:0.95}
+
+/* ===== PROJECT CARD IMAGE (FULL IMAGE + SAME SIZE) ===== */
+.card-head{
+  margin:-16px -16px 16px;    /* a bit more spacing under image */
+  height:140px;               /* same size for every card image */
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.04);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card-img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;         /* ✅ FULL IMAGE, NO CROP */
+  display:block;
+  transform: translateZ(0);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+.tags span{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--border);
+  padding:4px 8px;
+  border-radius:999px;
+}
+.card-links{display:flex;gap:12px;margin-top:10px;color:var(--accent)}
+.card-links a:hover{text-decoration:underline}
+
+.stack{display:flex;flex-direction:column;gap:14px}
+
+/* Bigger experience cards + image layout */
+.item{
+  position:relative;
+  display:flex;
+  gap:16px;
+  align-items:stretch;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  min-height:140px;
+}
+
+/* ===== EXPERIENCE LOGO (FULL IMAGE + SAME SIZE) ===== */
+.item-left{
+  width:72px;
+  min-width:72px;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.item-img{
+  max-width:56px;
+  max-height:56px;
+  border-radius:14px;
+  object-fit:contain;         /* ✅ FULL LOGO, NO CROP */
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.04);
+  transform: translateZ(0);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.item-body{flex:1}
+
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:baseline;
+  flex-wrap:wrap;
+}
+
+.contact{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.footer{padding-top:18px;padding-bottom:38px}
+
+/* Detail pages */
+.back{
+  display:inline-block;
+  margin: 10px 0 24px;
+  color: var(--muted);
+}
+.back:hover{color:var(--text);text-decoration:underline}
+
+.project-page h1{
+  font-size:36px;
+  margin: 0 0 10px;
+}
+
+.project-block{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--border);
+}
+
+/* ===== PROJECT DETAILS HERO (FULL IMAGE + SAME SIZE) ===== */
+.project-hero{
+  margin: -16px -16px 24px;
+  height: 260px;                 /* same size for every hero */
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  position: relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding-bottom: 14px;          /* ✅ extra breathing room under image */
+}
+
+.project-hero img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;           /* ✅ FULL IMAGE, NO CROP */
+  display: block;
+  transform: translateZ(0);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Experience details logo — final hover effect */
+.experience-hero img{
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.experience-hero img:hover{
+  transform: scale(1.05);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+}
+
+
+/* 3D hover (works with your JS tilt) */
+.tilt{
+  transform-style:preserve-3d;
+  transition: transform 0.12s ease, border-color 0.15s ease;
+  will-change: transform;
+}
+.tilt:hover{
+  border-color: rgba(96,165,250,0.45);
+}
+
+/* subtle glow overlay on cards */
+.tilt::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  pointer-events:none;
+  opacity:0;
+  transition: opacity 0.2s ease;
+  background: radial-gradient(600px circle at 30% 20%, rgba(96,165,250,0.10), transparent 50%);
+}
+.card.tilt::after{border-radius:16px}
+.tilt:hover::after{opacity:1}
+
+/* AWESOME 3D IMAGE EFFECTS (no libraries) */
+.card-head::after,
+.project-hero::after,
+.item-left::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background: radial-gradient(450px circle at 20% 20%,
+    rgba(96,165,250,0.18),
+    transparent 55%);
+  opacity:0;
+  transform: translateZ(0);
+  transition: opacity 0.2s ease;
+  pointer-events:none;
+}
+
+/* Shine sweep */
+.card-head::before,
+.project-hero::before{
+  content:"";
+  position:absolute;
+  top:-60%;
+  left:-60%;
+  width:120%;
+  height:120%;
+  background: linear-gradient(120deg,
+    transparent 35%,
+    rgba(255,255,255,0.14) 50%,
+    transparent 65%);
+  opacity:0;
+  transform: translateX(-25%) translateY(-25%);
+  transition: opacity 0.2s ease, transform 0.5s ease;
+  pointer-events:none;
+}
+
+/* Hover image pop */
+.card.tilt:hover .card-img{
+  transform: scale(1.05);
+  filter: contrast(1.06) brightness(1.02);
+}
+.item.tilt:hover .item-img{
+  transform: scale(1.08);
+  filter: contrast(1.06) brightness(1.02);
+}
+.project-hero:hover img{
+  transform: scale(1.03);
+  filter: contrast(1.06) brightness(1.02);
+}
+
+.card.tilt:hover .card-head::after,
+.item.tilt:hover .item-left::after,
+.project-hero:hover::after{
+  opacity:1;
+}
+
+.card.tilt:hover .card-head::before,
+.project-hero:hover::before{
+  opacity:1;
+  transform: translateX(65%) translateY(65%);
+}
+
+/* Optional: better motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .tilt, .card-img, .item-img, .project-hero img,
+  .card-head::before, .card-head::after,
+  .project-hero::before, .project-hero::after,
+  .item-left::after{
+    transition:none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:36px}
+}
+
+@media (max-width: 600px){
+  .grid{grid-template-columns:1fr}
+  .project-hero{ height: 180px; }
+  .item{flex-direction:column}
+  .item-left{width:auto; min-width:auto}
+}

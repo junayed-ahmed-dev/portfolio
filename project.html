@@ -1,0 +1,66 @@
+<!-- project.html (FINAL with logo image) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="container">
+    <nav class="nav">
+      <a class="logo" href="index.html">Junayed</a>
+      <div class="links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <a class="back" href="index.html#projects">← Back to Projects</a>
+
+    <section class="section project-page">
+      <!-- Project header image -->
+      <div class="project-hero">
+        <img id="p-image" alt="Project logo or preview" />
+      </div>
+
+      <h1 id="p-title">Loading…</h1>
+      <p class="subtitle" id="p-subtitle"></p>
+
+      <div class="tags" id="p-tags"></div>
+
+      <div class="project-block">
+        <h2>Overview</h2>
+        <p id="p-overview"></p>
+      </div>
+
+      <div class="project-block">
+        <h2>Key Features</h2>
+        <ul id="p-features"></ul>
+      </div>
+
+      <div class="project-block">
+        <h2>Tech Stack</h2>
+        <div class="tags" id="p-tech"></div>
+      </div>
+
+      <div class="project-block" id="p-links-block" style="display:none;">
+        <h2>Links</h2>
+        <div class="contact" id="p-links"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <span class="muted">© <span id="year"></span> Junayed Ahmed</span>
+  </footer>
+
+  <!-- NOTE: your file is named project.js -->
+  <script src="project.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
