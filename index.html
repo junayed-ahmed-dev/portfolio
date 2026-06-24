@@ -3,217 +3,916 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Junayed Ahmed — Portfolio</title>
+  <title>Junayed Ahmed — Computer Science Student · Builder · Founder</title>
+  <meta name="description" content="Junayed Ahmed — Computer science student, software builder, and BYAAW founder with a public health and social impact lens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <!-- Three.js importmap (must come before any type="module" script) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.min.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
-  <header class="container">
-    <nav class="nav">
-      <a class="logo" href="index.html#top">Junayed</a>
-      <div class="links">
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#experience">Experience</a>
-        <a href="index.html#contact">Contact</a>
+
+  <!-- ══════════════════════════════════════════════
+       BOOT SCREEN
+  ══════════════════════════════════════════════ -->
+  <div id="boot">
+    <div class="term-window">
+      <div class="term-bar">
+        <span class="term-dot" style="background:#ff5f56"></span>
+        <span class="term-dot" style="background:#ffbd2e"></span>
+        <span class="term-dot" style="background:#27c93f"></span>
+        <span class="term-label">junayed@portfolio: ~</span>
       </div>
-    </nav>
+      <div class="term-body" id="term-body"></div>
+    </div>
+    <button class="boot-skip" id="boot-skip" type="button">Skip intro</button>
+  </div>
 
-    <section id="top" class="hero">
-      <h1>Hi, I’m <span class="accent">Junayed Ahmed</span>.</h1>
-      <p class="subtitle">
-        Computer Science student building practical products — backend systems, mobile apps, and AI.
-      </p>
-      <div class="cta">
-        <a class="btn" href="#projects">View Projects</a>
-        <a class="btn secondary" href="#contact">Contact</a>
+  <!-- ══════════════════════════════════════════════
+       PARTICLE CANVAS
+  ══════════════════════════════════════════════ -->
+  <canvas id="bg"></canvas>
+
+  <!-- ══════════════════════════════════════════════
+       SITE CONTENT
+  ══════════════════════════════════════════════ -->
+  <div id="site">
+
+    <!-- ─── NAVIGATION ──────────────────────────── -->
+    <header id="nav">
+      <div id="nav-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+      <div class="nav-inner">
+        <a class="nav-logo" href="#hero">
+          <span class="nl-mark">JA</span>
+          <span class="nl-name">Junayed Ahmed</span>
+        </a>
+
+        <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+          <a href="#hero"     data-section="hero">Home</a>
+          <a href="#journey"  data-section="journey">Journey</a>
+          <a href="#research" data-section="research">Research</a>
+          <a href="#byaaw"    data-section="byaaw">BYAAW</a>
+          <a href="#projects" data-section="projects">Projects</a>
+          <a href="#experience" data-section="experience">Experience</a>
+          <a href="#contact"  data-section="contact">Contact</a>
+        </nav>
+
+        <button class="nav-hamburger" id="nav-hamburger"
+                aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <a class="nav-cta" href="#contact">Get in touch</a>
       </div>
-    </section>
-  </header>
 
-  <main class="container">
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-
-      <div class="grid">
-        <a class="card card-link tilt" href="project.html?id=bank-call-bot">
-          <div class="card-head">
-            <img class="card-img" src="assets/chatbot.jpg" alt="AI Banking Call Bot preview" />
-          </div>
-          <h3>AI Banking Call Bot</h3>
-          <p>Voice assistant for banking calls with intent routing and safe actions.</p>
-          <div class="tags">
-            <span>Python</span><span>FastAPI</span><span>Twilio</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=tweet-manager">
-          <div class="card-head">
-            <img class="card-img" src="assets/twitter.png" alt="Tweet Manager preview" />
-          </div>
-          <h3>Tweet Manager</h3>
-          <p>Twitter-like CLI app with auth, hashtags, followers, feeds, and favorites.</p>
-          <div class="tags">
-            <span>Python</span><span>SQLite</span><span>SQL</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=amazon-reviews-mongo">
-          <div class="card-head">
-            <img class="card-img" src="assets/amazon.jpg" alt="Amazon Review Analytics preview" />
-          </div>
-          <h3>Amazon Review Analytics</h3>
-          <p>MongoDB ingestion + analytics queries (top products, trends, suspicious reviews).</p>
-          <div class="tags">
-            <span>Python</span><span>MongoDB</span><span>NoSQL</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=event-lottery">
-          <div class="card-head">
-            <img class="card-img" src="assets/lottery.jpg" alt="Event Lottery System preview" />
-          </div>
-          <h3>Event Lottery System (CMPUT 301)</h3>
-          <p>Android app for event registration with role-based workflows and Firebase.</p>
-          <div class="tags">
-            <span>Android</span><span>Firebase</span><span>Team</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=poe2-ai">
-          <div class="card-head">
-            <img class="card-img" src="assets/poe2.jpg" alt="PoE2 AI Player preview" />
-          </div>
-          <h3>PoE2 AI Player</h3>
-          <p>Game-playing AI using heuristic evaluation and exploration strategies.</p>
-          <div class="tags">
-            <span>Python</span><span>AI</span><span>RL</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=rl-playground">
-          <div class="card-head">
-            <img class="card-img" src="assets/rl.webp" alt="RL Algorithm Playground preview" />
-          </div>
-          <h3>RL Algorithm Playground</h3>
-          <p>Implemented SARSA, Q-learning, Expected SARSA, and Dyna-Q+ with analysis.</p>
-          <div class="tags">
-            <span>Python</span><span>RL</span><span>Analysis</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=minesweeper-c">
-          <div class="card-head">
-            <img class="card-img" src="assets/minesweeper.png" alt="Pointer-Based Minesweeper preview" />
-          </div>
-          <h3>Pointer-Based Minesweeper</h3>
-          <p>Minesweeper in C using only pointer arithmetic (no array indexing).</p>
-          <div class="tags">
-            <span>C</span><span>Memory</span><span>Systems</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
-
-        <a class="card card-link tilt" href="project.html?id=raytracer-c">
-          <div class="card-head">
-            <img class="card-img" src="assets/raytracing.png" alt="Ray Tracing Engine preview" />
-          </div>
-          <h3>Ray Tracing Engine</h3>
-          <p>Basic ray tracer in C with spheres, lighting, and vector intersections.</p>
-          <div class="tags">
-            <span>C</span><span>Graphics</span><span>Math</span>
-          </div>
-          <div class="card-links"><span>View details →</span></div>
-        </a>
+      <!-- Mobile slide-down menu -->
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="navigation" aria-label="Mobile navigation">
+        <a href="#hero">Home</a>
+        <a href="#journey">Journey</a>
+        <a href="#research">Research</a>
+        <a href="#byaaw">BYAAW</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
       </div>
-    </section>
+    </header>
 
-    <section id="experience" class="section">
-      <h2>Experience</h2>
+    <!-- ─── HERO ─────────────────────────────────── -->
+    <section id="hero" aria-label="Introduction">
+      <div class="hero-glow g1"></div>
+      <div class="hero-glow g2"></div>
+      <div class="hero-glow g3"></div>
 
-      <div class="stack">
-        <a class="item card-link tilt" href="experience.html?id=ucb-intern">
-          <div class="item-left">
-            <img class="item-img" src="assets/ucb.png" alt="United Commercial Bank logo" />
+      <!-- Two-column: text left, avatar right -->
+      <div class="hero-inner">
+
+        <!-- LEFT — text -->
+        <div class="hero-body" id="hero-body">
+          <div class="hero-eyebrow">
+            <span class="he-dot" aria-hidden="true"></span>
+            Computer Science Student · Builder · Founder · Edmonton, AB
           </div>
-          <div class="item-body">
-            <div class="item-top">
-              <h3>Software Developer Intern — United Commercial Bank PLC</h3>
-              <span class="muted">Jun 2024 – Aug 2024</span>
+
+          <h1 class="hero-title">
+            <span class="ht-line ht-1">JUNAYED</span>
+            <span class="ht-line ht-2">AHMED<span class="ht-period">.</span></span>
+          </h1>
+
+          <p class="hero-roles" aria-label="Roles">
+            <span>Software Engineering</span>
+            <span class="hr-sep" aria-hidden="true">·</span>
+            <span>AI &amp; Systems</span>
+            <span class="hr-sep" aria-hidden="true">·</span>
+            <span>Public Health Lens</span>
+          </p>
+
+          <p class="hero-sub">
+            Computer science student building software across AI, systems, data,
+            and product experiences — with public health and advocacy as the
+            human-impact side of my work.
+          </p>
+
+          <div class="hero-btns">
+            <a class="hb-primary" href="#projects">View Featured Work</a>
+            <a class="hb-ghost" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <!-- RIGHT — 3D avatar -->
+        <div class="hero-avatar-col">
+          <div class="speech-bubble hero-bubble">
+            <p class="sb-hi" id="sb-hi">Hi, I'm Junayed</p>
+            <p class="sb-body">
+              I turn research, advocacy, and lived experience into meaningful
+              public health and social impact — from Bangladesh to Canada.
+            </p>
+          </div>
+
+          <div class="avatar-canvas-wrap" id="avatar-canvas-wrap">
+            <canvas
+              id="avatar-canvas"
+              aria-label="Interactive 3D avatar of Junayed Ahmed — click to wave"
+            ></canvas>
+            <div class="avatar-loading" id="avatar-loading" aria-live="polite">
+              <div class="al-dot-ring" aria-hidden="true">
+                <div></div><div></div><div></div><div></div>
+              </div>
+              <span>Loading avatar…</span>
             </div>
-            <p class="muted">BRDs, deployments/testing, secure payment prototype, MySQL, C#/.NET, IT support.</p>
-            <div class="card-links"><span>View details →</span></div>
-          </div>
-        </a>
-
-        <a class="item card-link tilt" href="experience.html?id=neo-sales">
-          <div class="item-left">
-            <img class="item-img" src="assets/neo.jpg" alt="Neo Financial logo" />
-          </div>
-          <div class="item-body">
-            <div class="item-top">
-              <h3>Sales Representative — Neo Financial</h3>
-              <span class="muted">Mar 2024 – Present</span>
+            <div class="avatar-wave-badge" id="avatar-wave" aria-hidden="true">
+              <span class="wave-emoji">👋</span>
+              <span class="wave-label">Click to wave!</span>
             </div>
-            <p class="muted">Customer experience, relationship building, and promoting banking solutions.</p>
-            <div class="card-links"><span>View details →</span></div>
           </div>
-        </a>
 
-        <a class="item card-link tilt" href="experience.html?id=wizeprep">
-          <div class="item-left">
-            <img class="item-img" src="assets/wizeprep.jpg" alt="Wizeprep logo" />
+          <div class="avatar-pills">
+            <span class="av-pill">Public Health</span>
+            <span class="av-pill">Bangladesh</span>
+            <span class="av-pill">Canada</span>
+            <span class="av-pill">Autism Welfare</span>
+            <span class="av-pill">CS &amp; Public Health</span>
           </div>
-          <div class="item-body">
-            <div class="item-top">
-              <h3>Marketing Representative & Class Ambassador — Wizeprep</h3>
-              <span class="muted">Oct 2023 – Mar 2025</span>
-            </div>
-            <p class="muted">On-campus marketing, announcements, outreach, and brand communication.</p>
-            <div class="card-links"><span>View details →</span></div>
-          </div>
-        </a>
+        </div>
 
-        <a class="item card-link tilt" href="experience.html?id=byaw-founder">
-          <div class="item-left">
-            <img class="item-img" src="assets/byaaw.jpeg" alt="Bangladesh Youth Alliance for Autism Welfare logo" />
-          </div>
-          <div class="item-body">
-            <div class="item-top">
-              <h3>Founder — Bangladesh Youth Alliance for Autism Welfare</h3>
-              <span class="muted">Jan 2020 – Present</span>
-            </div>
-            <p class="muted">Led youth org, events, fundraising, and autism awareness initiatives.</p>
-            <div class="card-links"><span>View details →</span></div>
-          </div>
-        </a>
+      </div><!-- /.hero-inner -->
+
+      <div class="hero-stats" id="hero-stats" aria-label="Quick facts">
+        <div class="hs-item">
+          <strong>20+</strong>
+          <span>Advocacy Meetings</span>
+        </div>
+        <div class="hs-rule" aria-hidden="true"></div>
+        <div class="hs-item">
+          <strong>11</strong>
+          <span>Projects Built</span>
+        </div>
+        <div class="hs-rule" aria-hidden="true"></div>
+        <div class="hs-item">
+          <strong>BYAAW</strong>
+          <span>Founder · Since 2020</span>
+        </div>
+        <div class="hs-rule" aria-hidden="true"></div>
+        <div class="hs-item">
+          <strong>Bangladesh → Canada</strong>
+          <span>International Journey</span>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <div class="sc-mouse"><div class="sc-dot"></div></div>
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p class="muted">Want to collaborate or hire? Reach out.</p>
+    <!-- ─── MISSION ───────────────────────────────── -->
+    <!-- ─── TRUST / AFFILIATION STRIP ───────────────── -->
+    <div id="trust-strip" aria-label="Affiliated organizations">
+      <p class="trust-label">Affiliated With</p>
+      <div class="trust-logos">
+        <div class="trust-logo">
+          <span class="tl-mark tl-who">UNYSA</span>
+          <span class="tl-name">UN Youth &amp; Students Association</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-logo">
+          <span class="tl-mark tl-ua">UofA</span>
+          <span class="tl-name">University of Alberta</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-logo">
+          <span class="tl-mark tl-byaaw">BYAAW</span>
+          <span class="tl-name">Autism Welfare Alliance</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-logo">
+          <span class="tl-mark tl-ucb">UCB</span>
+          <span class="tl-name">United Commercial Bank</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-logo">
+          <span class="tl-mark" style="background:linear-gradient(135deg,#00b359,#007a3d)">Neo</span>
+          <span class="tl-name">Neo Financial</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-logo">
+          <span class="tl-mark" style="background:linear-gradient(135deg,#0075be,#00498a)">BMO</span>
+          <span class="tl-name">Bank of Montreal</span>
+        </div>
+      </div>
+    </div>
 
-      <div class="contact">
-        <a class="btn" href="mailto:junayedndc48@gmail.com">Email Me</a>
-        <a class="btn secondary"
-           href="https://www.linkedin.com/in/junayed-ahmed-b3a122269/details/experience/"
-           target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="btn secondary"
-           href="https://github.com/junayed-ahmed-dev"
-           target="_blank" rel="noreferrer">GitHub</a>
+    <!-- ─── MISSION ───────────────────────────────── -->
+    <section id="mission" aria-labelledby="mission-heading">
+      <div class="wrap">
+        <div class="mission-block reveal">
+          <span class="sec-tag">My Mission</span>
+          <h2 id="mission-heading" class="mission-title">
+            Connecting evidence,<br>people, and
+            <span class="text-accent-purple"> policy</span>.
+          </h2>
+          <p class="mission-text">
+            To use research, advocacy, and technology to improve health systems,
+            support vulnerable communities, and promote inclusion for children
+            and families affected by autism and other public health challenges.
+          </p>
+        </div>
       </div>
     </section>
-  </main>
 
-  <footer class="container footer">
-    <span class="muted">© <span id="year"></span> Junayed Ahmed</span>
-  </footer>
+    <!-- ─── IMPACT SNAPSHOT ──────────────────────── -->
+    <section id="impact" aria-labelledby="impact-heading">
+      <div class="wrap">
+        <div class="impact-hd reveal">
+          <span class="sec-tag">Impact</span>
+          <h2 id="impact-heading">By the Numbers</h2>
+        </div>
+        <div class="impact-grid">
+          <div class="impact-card reveal" data-delay="0">
+            <div class="impact-num" data-target="1000" data-suffix="+">0</div>
+            <div class="impact-label">Community Members Reached</div>
+            <div class="impact-desc">Families, youth &amp; advocates engaged through BYAAW programs</div>
+          </div>
+          <div class="impact-card reveal" data-delay="1">
+            <div class="impact-num" data-target="20" data-suffix="+">0</div>
+            <div class="impact-label">Advocacy Meetings</div>
+            <div class="impact-desc">Stakeholder sessions, policy convenings &amp; health forums</div>
+          </div>
+          <div class="impact-card reveal" data-delay="2">
+            <div class="impact-num" data-target="11" data-suffix="">0</div>
+            <div class="impact-label">Projects Built</div>
+            <div class="impact-desc">Tech, AI, systems programming, advocacy &amp; public health work</div>
+          </div>
+          <div class="impact-card reveal" data-delay="3">
+            <div class="impact-num" data-target="2" data-suffix="">0</div>
+            <div class="impact-label">Countries of Impact</div>
+            <div class="impact-desc">Bangladesh &amp; Canada — research, advocacy &amp; community work</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── JOURNEY TIMELINE ──────────────────────── -->
+    <section id="journey" aria-labelledby="journey-heading">
+      <div class="wrap">
+        <div class="sec-hd reveal">
+          <span class="sec-tag">My Story</span>
+          <h2 id="journey-heading">The Journey</h2>
+        </div>
+        <div class="timeline" role="list">
+
+          <div class="tl-item reveal" role="listitem">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-card">
+              <span class="tl-year">2001</span>
+              <h3 class="tl-title">Roots in Bangladesh</h3>
+              <p class="tl-desc">Born and raised in Bangladesh, where a deep connection to community and a passion for health equity first took shape.</p>
+              <span class="tl-tag">Origin</span>
+            </div>
+          </div>
+
+          <div class="tl-item reveal" role="listitem">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-card">
+              <span class="tl-year">2020</span>
+              <h3 class="tl-title">Founded BYAAW</h3>
+              <p class="tl-desc">Established Bangladesh Youth Alliance for Autism Welfare — a youth-led initiative dedicated to autism awareness, family support, and inclusion advocacy.</p>
+              <span class="tl-tag tl-tag-purple">Advocacy</span>
+            </div>
+          </div>
+
+          <div class="tl-item reveal" role="listitem">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-card">
+              <span class="tl-year">2021–23</span>
+              <h3 class="tl-title">BYAAW Grows &amp; Expands</h3>
+              <p class="tl-desc">Built BYAAW's community to 1,000+ members — running awareness programs in schools, organizing events, fundraising, and expanding advocacy reach across Bangladesh and beyond.</p>
+              <span class="tl-tag tl-tag-purple">Advocacy</span>
+            </div>
+          </div>
+
+          <div class="tl-item reveal" role="listitem">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-card">
+              <span class="tl-year">2023</span>
+              <h3 class="tl-title">International Journey to Canada</h3>
+              <p class="tl-desc">Moved to Edmonton, Alberta to pursue higher education at the University of Alberta, bringing a global public health perspective to new opportunities.</p>
+              <span class="tl-tag">Education</span>
+            </div>
+          </div>
+
+          <div class="tl-item reveal" role="listitem">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-card">
+              <span class="tl-year">2024–25</span>
+              <h3 class="tl-title">Professional Experience &amp; Real Projects</h3>
+              <p class="tl-desc">Software Developer Intern at UCB, Sales Rep at Neo Financial, campus ambassador at Wizeprep — and 11 projects spanning AI, systems programming, public health, and advocacy.</p>
+              <span class="tl-tag tl-tag-cyan">Work</span>
+            </div>
+          </div>
+
+          <div class="tl-item reveal tl-item-future" role="listitem">
+            <div class="tl-dot tl-dot-gold" aria-hidden="true"></div>
+            <div class="tl-card tl-card-future">
+              <span class="tl-year">Future</span>
+              <h3 class="tl-title">Global Health Leadership</h3>
+              <p class="tl-desc">Aspiring to shape global health policy, advance evidence-based public health systems, and create lasting social impact across communities worldwide.</p>
+              <span class="tl-tag tl-tag-gold">Vision</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PUBLIC HEALTH FOCUS ──────────────────── -->
+    <section id="research" aria-labelledby="research-heading">
+      <div class="wrap">
+        <div class="sec-hd reveal">
+          <span class="sec-tag">Public Health Knowledge</span>
+          <h2 id="research-heading">Academic Focus &amp; Applied Work</h2>
+          <div class="rc-creds" aria-label="Academic affiliations">
+            <span>University of Alberta</span>
+            <span class="rc-creds-sep" aria-hidden="true">·</span>
+            <span>School of Public Health</span>
+            <span class="rc-creds-sep" aria-hidden="true">·</span>
+            <span>SPH 300–400 Level Coursework</span>
+          </div>
+        </div>
+        <div class="research-grid">
+
+          <div class="research-card reveal" style="--rc-i:0">
+            <div class="rc-icon" aria-hidden="true">🌱</div>
+            <h3>Environmental Health</h3>
+            <p>Biological, chemical, and physical environmental factors and their impact on community health — including risk assessment, prevention strategies, and case studies across developed and developing country contexts.</p>
+            <span class="rc-impact">SPH Coursework</span>
+          </div>
+
+          <div class="research-card reveal" style="--rc-i:1">
+            <div class="rc-icon" aria-hidden="true">🌡️</div>
+            <h3>Climate Change &amp; Health</h3>
+            <p>How climate hazards — heat mortality, vector-borne and waterborne disease, malnutrition, mental health disruption — shape population health risk. Applied vulnerability assessment, health equity frameworks, and community adaptation strategies.</p>
+            <span class="rc-impact">SPH 456 · Coursework</span>
+          </div>
+
+          <div class="research-card reveal" style="--rc-i:2">
+            <div class="rc-icon" aria-hidden="true">🔬</div>
+            <h3>Epidemiology &amp; Disease Surveillance</h3>
+            <p>Epidemiologic principles applied to the determinants of health and disease in populations — disease outbreak investigation, epidemic and pandemic analysis, and health promotion strategies across diverse communities.</p>
+            <span class="rc-impact">SPH Coursework</span>
+          </div>
+
+          <div class="research-card reveal" style="--rc-i:3">
+            <div class="rc-icon" aria-hidden="true">🌍</div>
+            <h3>Global Health &amp; Globalization</h3>
+            <p>How globalization shapes health disparities, access to care, and disease burden across borders — examining multifactorial interventions, health equity, and sustainable solutions in an interconnected global health system.</p>
+            <span class="rc-impact">SPH Coursework</span>
+          </div>
+
+          <div class="research-card reveal" style="--rc-i:4">
+            <div class="rc-icon" aria-hidden="true">🧩</div>
+            <h3>Autism Welfare &amp; Community Advocacy</h3>
+            <p>Founded BYAAW and led evidence-based awareness programs, podcast-style specialist sessions, and family support initiatives for communities affected by autism across Bangladesh.</p>
+            <span class="rc-impact">Applied Work</span>
+            <a class="rc-btn" href="project.html?id=break-the-stigma">View Project ↗</a>
+          </div>
+
+          <div class="research-card reveal" style="--rc-i:5">
+            <div class="rc-icon" aria-hidden="true">☢️</div>
+            <h3>Indoor Radon Exposure Research</h3>
+            <p>Evidence-based policy analysis and infographic on radon risk in Alberta homes — proposing a provincial Radon Mitigation Disclosure Program with mandatory testing, subsidized kits, and public education through Alberta Health Services.</p>
+            <span class="rc-impact">Applied Work</span>
+            <a class="rc-btn" href="project.html?id=radon-infographic">View Project ↗</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── BYAAW ──────────────────────────────────── -->
+    <section id="byaaw" aria-labelledby="byaaw-heading">
+      <div class="wrap">
+        <div class="byaaw-block">
+
+          <div class="byaaw-content reveal">
+            <span class="sec-tag">Founded 2020 · UNYSA-Affiliated</span>
+            <h2 id="byaaw-heading">Bangladesh Youth Alliance<br>for Autism Welfare</h2>
+            <p class="byaaw-text">
+              I started BYAAW because I watched families in Bangladesh navigate autism
+              alone — no resources, no community, no one to tell them their child's
+              future could still be full. BYAAW exists to change that reality, one
+              family at a time.
+            </p>
+
+            <blockquote class="byaaw-quote">
+              <span class="bq-mark" aria-hidden="true">"</span>
+              Every child with autism in Bangladesh deserves to be seen.
+              That belief started BYAAW — and it still drives everything we do.
+              <cite>— Junayed Ahmed, Founder</cite>
+            </blockquote>
+
+            <ul class="byaaw-list" aria-label="BYAAW initiatives">
+              <li>
+                <span class="bl-icon" aria-hidden="true">◉</span>
+                Autism awareness programs in schools and communities across Bangladesh
+              </li>
+              <li>
+                <span class="bl-icon" aria-hidden="true">◉</span>
+                Family support networks and direct counseling outreach
+              </li>
+              <li>
+                <span class="bl-icon" aria-hidden="true">◉</span>
+                Youth-led advocacy for disability policy inclusion
+              </li>
+              <li>
+                <span class="bl-icon" aria-hidden="true">◉</span>
+                International partnerships — UNYSA-affiliated advocacy reaching 2 countries
+              </li>
+            </ul>
+            <a class="byaaw-cta" href="project.html?id=byaaw">Explore BYAAW ↗</a>
+          </div>
+
+          <div class="byaaw-visual reveal">
+            <div class="byaaw-card">
+              <div class="byaaw-card-glow" aria-hidden="true"></div>
+              <div class="bc-icon" aria-hidden="true">🤝</div>
+              <h3>Real impact, real families.</h3>
+              <p class="bc-body">
+                From Dhaka to Edmonton — BYAAW has grown from a personal mission
+                into a movement with global reach and UNYSA-affiliated advocacy.
+              </p>
+              <div class="bc-stats" aria-label="BYAAW impact numbers">
+                <div class="bc-stat">
+                  <strong class="impact-num" data-target="1000" data-suffix="+">1000+</strong>
+                  <span>Community members</span>
+                </div>
+                <div class="bc-stat-rule" aria-hidden="true"></div>
+                <div class="bc-stat">
+                  <strong class="impact-num" data-target="20" data-suffix="+">20+</strong>
+                  <span>Advocacy meetings</span>
+                </div>
+                <div class="bc-stat-rule" aria-hidden="true"></div>
+                <div class="bc-stat">
+                  <strong class="impact-num" data-target="2" data-suffix="">2</strong>
+                  <span>Countries reached</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURED PROJECTS ─────────────────────── -->
+    <section id="projects" aria-labelledby="projects-heading">
+      <div class="wrap">
+
+        <div class="proj-top reveal">
+          <div>
+            <span class="sec-tag">Selected Work</span>
+            <h2 id="projects-heading">Projects</h2>
+          </div>
+          <div class="proj-top-right">
+            <div class="proj-filters" id="proj-filters" role="group" aria-label="Filter projects">
+              <div class="pf-pill" id="pf-pill" aria-hidden="true"></div>
+              <button class="pf-btn active" data-filter="featured">Featured</button>
+              <button class="pf-btn" data-filter="all">All</button>
+              <button class="pf-btn" data-filter="tech">Tech</button>
+              <button class="pf-btn" data-filter="ai">AI / ML</button>
+              <button class="pf-btn" data-filter="systems">Systems</button>
+              <button class="pf-btn" data-filter="advocacy">Advocacy</button>
+            </div>
+            <span class="proj-count" id="proj-count" aria-live="polite">6 featured projects</span>
+
+          </div>
+        </div>
+
+        <!-- Topic ticker -->
+        <div class="proj-ticker reveal" aria-hidden="true">
+          <div class="pt-track">
+            <span>Python</span><span class="pt-dot">·</span>
+            <span>Voice AI</span><span class="pt-dot">·</span>
+            <span>Android</span><span class="pt-dot">·</span>
+            <span>Firebase</span><span class="pt-dot">·</span>
+            <span>C · Systems</span><span class="pt-dot">·</span>
+            <span>SQL · NoSQL</span><span class="pt-dot">·</span>
+            <span>Reinforcement Learning</span><span class="pt-dot">·</span>
+            <span>Ray Tracing</span><span class="pt-dot">·</span>
+            <span>Advocacy</span><span class="pt-dot">·</span>
+            <span>FastAPI</span><span class="pt-dot">·</span>
+            <span>MongoDB</span><span class="pt-dot">·</span>
+            <span>Heuristics</span><span class="pt-dot">·</span>
+            <span>Pointer Arithmetic</span><span class="pt-dot">·</span>
+            <span>Public Health</span><span class="pt-dot">·</span>
+            <span>Python</span><span class="pt-dot">·</span>
+            <span>Voice AI</span><span class="pt-dot">·</span>
+            <span>Android</span><span class="pt-dot">·</span>
+            <span>Firebase</span><span class="pt-dot">·</span>
+            <span>C · Systems</span><span class="pt-dot">·</span>
+            <span>SQL · NoSQL</span><span class="pt-dot">·</span>
+          </div>
+        </div>
+
+        <div class="proj-showcase">
+
+          <div class="proj-list" id="proj-list" role="list">
+
+            <a class="pl-item active" role="listitem"
+               data-cats="featured advocacy"
+               data-img="assets/stigma.jpg" data-num="01"
+               href="project.html?id=break-the-stigma">
+              <span class="pli-num" aria-hidden="true">01</span>
+              <div class="pli-body">
+                <h3>Let's Break the Stigma</h3>
+                <p>Advocacy campaign and podcast-style sessions with specialists, community changemakers, and Q&amp;A discussions to educate the public on autism in Bangladesh.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Advocacy</span><span>Podcast</span><span>Autism</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item" role="listitem"
+               data-cats="featured research advocacy"
+               data-img="assets/radon.png" data-num="02"
+               href="project.html?id=radon-infographic">
+              <span class="pli-num" aria-hidden="true">02</span>
+              <div class="pli-body">
+                <h3>Indoor Radon Exposure in Alberta Homes</h3>
+                <p>Public health infographic proposing a provincial radon mitigation policy — backed by data on lung cancer risk, WHO exceedance rates, and an evidence-based disclosure program.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Public Health</span><span>Policy</span><span>Infographic</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item is-out" role="listitem"
+               data-cats="research advocacy"
+               data-img="assets/philosophy.png" data-num="03"
+               href="project.html?id=morality-essay">
+              <span class="pli-num" aria-hidden="true">03</span>
+              <div class="pli-body">
+                <h3>Can We Be Good Without God?</h3>
+                <p>Philosophy essay comparing theistic and atheistic moral frameworks — examining Divine Command Theory, secular humanism, and the Euthyphro dilemma through a comparative and truth lens.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Philosophy</span><span>Ethics</span><span>Academic</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item" role="listitem"
+               data-cats="featured tech ai"
+               data-img="assets/chatbot.jpg" data-num="04"
+               href="project.html?id=bank-call-bot">
+              <span class="pli-num" aria-hidden="true">04</span>
+              <div class="pli-body">
+                <h3>AI Banking Call Bot</h3>
+                <p>AI-powered voice assistant handling inbound banking calls with intent routing and safety-first action policies via FastAPI and Twilio.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Python</span><span>FastAPI</span><span>Voice AI</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item is-out" role="listitem"
+               data-cats="tech systems"
+               data-img="assets/twitter.png" data-num="05"
+               href="project.html?id=tweet-manager">
+              <span class="pli-num" aria-hidden="true">05</span>
+              <div class="pli-body">
+                <h3>Tweet Manager</h3>
+                <p>Full-featured Twitter-like CLI app in Python + SQLite — authentication, hashtags, followers, retweets, feeds, and injection-safe queries.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Python</span><span>SQLite</span><span>CLI</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item is-out" role="listitem"
+               data-cats="tech systems"
+               data-img="assets/amazon.jpg" data-num="06"
+               href="project.html?id=amazon-reviews-mongo">
+              <span class="pli-num" aria-hidden="true">06</span>
+              <div class="pli-body">
+                <h3>Amazon Review Analytics</h3>
+                <p>MongoDB aggregation pipelines surfacing product quality signals, reviewer behaviour, time trends, and suspicious review detection at scale.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Python</span><span>MongoDB</span><span>Analytics</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item" role="listitem"
+               data-cats="featured tech systems"
+               data-img="assets/lottery.png" data-num="07"
+               href="project.html?id=event-lottery">
+              <span class="pli-num" aria-hidden="true">07</span>
+              <div class="pli-body">
+                <h3>Event Lottery System</h3>
+                <p>Android app with role-based access for entrants, organizers, and admins — lottery-based selection backed by Firebase real-time sync.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Android</span><span>Firebase</span><span>Team Project</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item" role="listitem"
+               data-cats="featured tech ai"
+               data-img="assets/poe2.jpg" data-num="08"
+               href="project.html?id=poe2-ai">
+              <span class="pli-num" aria-hidden="true">08</span>
+              <div class="pli-body">
+                <h3>PoE2 AI Player</h3>
+                <p>AI agent playing a strategy game using heuristic evaluation and UCB-style exploration-exploitation to outperform greedy and random baselines.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Python</span><span>AI</span><span>Heuristics</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item" role="listitem"
+               data-cats="featured tech ai"
+               data-img="assets/rl.webp" data-num="09"
+               href="project.html?id=rl-playground">
+              <span class="pli-num" aria-hidden="true">09</span>
+              <div class="pli-body">
+                <h3>RL Algorithm Playground</h3>
+                <p>SARSA, Q-learning, Expected SARSA, and Dyna-Q+ implemented from scratch and compared empirically across environments including Mountain Car.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>Python</span><span>RL</span><span>Algorithms</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item is-out" role="listitem"
+               data-cats="tech systems"
+               data-img="assets/minesweeper.png" data-num="10"
+               href="project.html?id=minesweeper-c">
+              <span class="pli-num" aria-hidden="true">10</span>
+              <div class="pli-body">
+                <h3>Pointer-Based Minesweeper</h3>
+                <p>Console Minesweeper in C using exclusively pointer arithmetic — zero array subscripts anywhere in the grid logic.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>C</span><span>Pointers</span><span>Systems</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="pl-item is-out" role="listitem"
+               data-cats="tech systems"
+               data-img="assets/raytracing.png" data-num="11"
+               href="project.html?id=raytracer-c">
+              <span class="pli-num" aria-hidden="true">11</span>
+              <div class="pli-body">
+                <h3>Ray Tracing Engine</h3>
+                <p>Ray tracer in C computing ray-sphere intersections and lighting from vector math alone — output rendered to PPM image format.</p>
+                <div class="pli-tags" aria-label="Categories">
+                  <span>C</span><span>Graphics</span><span>Vector Math</span>
+                </div>
+              </div>
+              <span class="pli-arrow" aria-hidden="true">↗</span>
+            </a>
+
+          </div>
+
+          <div class="proj-preview" id="proj-preview" aria-hidden="true">
+            <img class="pp-img pp-active" id="pp-a" src="assets/stigma.jpg" alt="" />
+            <img class="pp-img"           id="pp-b" src="assets/stigma.jpg" alt="" />
+            <div class="pp-bar">
+              <div class="pp-bar-num" id="pp-num">01</div>
+              <div class="pp-bar-mid">
+                <div class="pp-bar-title" id="pp-title">Let's Break the Stigma</div>
+                <div class="pp-bar-sub"   id="pp-sub">Advocacy · Podcast · Autism</div>
+              </div>
+              <a class="pp-bar-cta" id="pp-cta" href="project.html?id=break-the-stigma">View project ↗</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ─────────────────────────────── -->
+    <section id="experience" aria-labelledby="exp-heading">
+      <div class="wrap">
+
+        <div class="sec-hd reveal">
+          <span class="sec-tag">Background</span>
+          <h2 id="exp-heading">Experience</h2>
+        </div>
+
+        <div class="exp-grid">
+
+          <a class="exp-card reveal" href="experience.html?id=bmo-specialist">
+            <div class="ec-header">
+              <div class="ec-logo-wrap">
+                <img src="assets/BMO.png.webp" alt="BMO Bank of Montreal logo" />
+              </div>
+              <div class="ec-meta">
+                <span class="ec-date">May 2026 – Present</span>
+                <span class="ec-type">Permanent Part-time</span>
+              </div>
+            </div>
+            <h3>Client Experience Specialist</h3>
+            <p class="ec-company">BMO Bank of Montreal</p>
+            <p class="ec-desc">Delivering high-quality banking service, recommending financial products, and guiding clients through digital platforms at one of Canada's largest banks.</p>
+            <div class="ec-tags">
+              <span>Banking</span><span>Client Relations</span><span>Fintech</span>
+            </div>
+            <div class="ec-arrow" aria-hidden="true">↗</div>
+          </a>
+
+          <a class="exp-card reveal" href="experience.html?id=byaaw-founder">
+            <div class="ec-header">
+              <div class="ec-logo-wrap">
+                <img src="assets/byaaw.jpeg" alt="BYAAW logo" />
+              </div>
+              <div class="ec-meta">
+                <span class="ec-date">Jan 2020 – Present</span>
+                <span class="ec-type">Founder</span>
+              </div>
+            </div>
+            <h3>Founder</h3>
+            <p class="ec-company">Bangladesh Youth Alliance for Autism Welfare</p>
+            <p class="ec-desc">Founded and led a youth-driven organization for autism welfare, organizing events, fundraising, and awareness campaigns across Bangladesh.</p>
+            <div class="ec-tags">
+              <span>Leadership</span><span>NGO</span><span>Advocacy</span>
+            </div>
+            <div class="ec-arrow" aria-hidden="true">↗</div>
+          </a>
+
+          <a class="exp-card reveal" href="experience.html?id=ucb-intern">
+            <div class="ec-header">
+              <div class="ec-logo-wrap">
+                <img src="assets/ucb.png" alt="United Commercial Bank logo" />
+              </div>
+              <div class="ec-meta">
+                <span class="ec-date">Jun – Aug 2024</span>
+                <span class="ec-type">Internship</span>
+              </div>
+            </div>
+            <h3>Software Developer Intern</h3>
+            <p class="ec-company">United Commercial Bank PLC</p>
+            <p class="ec-desc">Worked on enterprise software, secure payment prototypes, and IT infrastructure at one of Bangladesh's leading commercial banks.</p>
+            <div class="ec-tags">
+              <span>C#</span><span>.NET</span><span>MySQL</span>
+            </div>
+            <div class="ec-arrow" aria-hidden="true">↗</div>
+          </a>
+
+          <a class="exp-card reveal" href="experience.html?id=neo-sales">
+            <div class="ec-header">
+              <div class="ec-logo-wrap">
+                <img src="assets/neo.jpg" alt="Neo Financial logo" />
+              </div>
+              <div class="ec-meta">
+                <span class="ec-date">Mar 2024 – Present</span>
+                <span class="ec-type">Part-time</span>
+              </div>
+            </div>
+            <h3>Sales Representative</h3>
+            <p class="ec-company">Neo Financial</p>
+            <p class="ec-desc">Customer experience and fintech banking solution promotion, combining communication skills with modern financial technology advocacy.</p>
+            <div class="ec-tags">
+              <span>Sales</span><span>Fintech</span><span>Communication</span>
+            </div>
+            <div class="ec-arrow" aria-hidden="true">↗</div>
+          </a>
+
+          <a class="exp-card reveal" href="experience.html?id=wizeprep">
+            <div class="ec-header">
+              <div class="ec-logo-wrap">
+                <img src="assets/wizeprep.jpg" alt="Wizeprep logo" />
+              </div>
+              <div class="ec-meta">
+                <span class="ec-date">Oct 2023 – Mar 2025</span>
+                <span class="ec-type">Contract</span>
+              </div>
+            </div>
+            <h3>Marketing Rep &amp; Class Ambassador</h3>
+            <p class="ec-company">Wizeprep</p>
+            <p class="ec-desc">Campus outreach, class announcements, and student brand communication at the University of Alberta, Edmonton.</p>
+            <div class="ec-tags">
+              <span>Marketing</span><span>Outreach</span><span>Communication</span>
+            </div>
+            <div class="ec-arrow" aria-hidden="true">↗</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ──────────────────────────────── -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="wrap">
+        <div class="contact-block reveal">
+          <p class="cb-eyebrow">Open to the Right Opportunity</p>
+          <h2 id="contact-heading" class="cb-title">
+            Software roles,<br>
+            <em class="cb-em">with human impact</em>.
+          </h2>
+          <p class="cb-sub">
+            Open to software internships, developer roles, AI/data projects,
+            and selective public health or nonprofit collaborations where
+            technology can create practical community impact.
+          </p>
+          <a class="cb-email" href="mailto:junayed.ah2@gmail.com">
+            junayed.ah2@gmail.com
+          </a>
+          <div class="cb-pills">
+            <a class="cb-pill" href="https://www.linkedin.com/in/junayed-ahmed-b3a122269/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a class="cb-pill" href="https://github.com/junayed-ahmed-dev" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a class="cb-pill cb-pill-gold" href="mailto:junayed.ah2@gmail.com?subject=CV%20Request%20-%20Junayed%20Ahmed">Request CV ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="wrap footer-inner">
+        <span>© <span id="yr"></span> Junayed Ahmed</span>
+        <span class="footer-right">Built with purpose · Edmonton, AB</span>
+      </div>
+    </footer>
+
+  </div><!-- /#site -->
 
   <script src="script.js"></script>
+  <!-- 3D Avatar — ES module, runs after DOM is ready -->
+  <script type="module" src="avatar.js"></script>
+
+  <!--
+    THREE.JS AVATAR INTEGRATION (active — see avatar.js)
+    ══════════════════════════════════════════════════
+    When assets/avatar/junayed-avatar.glb is ready:
+
+    1. Add Three.js CDN or local build:
+       <script src="https://cdn.jsdelivr.net/npm/three@0.163/build/three.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/three@0.163/examples/js/loaders/GLTFLoader.js"></script>
+
+    2. Replace the <img> inside #avatar-container with a <canvas id="avatar-canvas">
+
+    3. In script.js, add the loader:
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 1.5, 3);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('avatar-canvas'), alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const loader = new THREE.GLTFLoader();
+    loader.load('assets/avatar/junayed-avatar.glb', (gltf) => {
+      const avatar = gltf.scene;
+      scene.add(avatar);
+
+      const mixer = new THREE.AnimationMixer(avatar);
+      // Play wave clip on entry, then idle
+      const waveClip = THREE.AnimationClip.findByName(gltf.animations, 'wave');
+      const idleClip = THREE.AnimationClip.findByName(gltf.animations, 'idle');
+      if (waveClip) mixer.clipAction(waveClip).play();
+      else if (idleClip) mixer.clipAction(idleClip).play();
+
+      // Mouse follow: update head bone rotation on mousemove
+    });
+    ══════════════════════════════════════════════════
+  -->
 </body>
 </html>

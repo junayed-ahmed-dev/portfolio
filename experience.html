@@ -1,53 +1,189 @@
-<!-- experience.html (FINAL: logo top center) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Experience — Portfolio</title>
+  <title>Experience — Junayed Ahmed</title>
+  <meta name="description" content="Experience case study — Junayed Ahmed, public health researcher and founder.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="container">
-    <nav class="nav">
-      <a class="logo" href="index.html">YourName</a>
-      <div class="links">
+
+  <!-- ── BOOT SCREEN ──────────────────────────────────── -->
+  <div id="boot">
+    <div class="boot-logo">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" stroke="rgba(124,58,237,0.45)"/>
+        <text x="28" y="35" text-anchor="middle"
+              font-family="Sora,-apple-system,sans-serif"
+              font-size="18" font-weight="700" letter-spacing="-1" fill="white">JA</text>
+      </svg>
+    </div>
+    <p class="boot-name">Junayed Ahmed</p>
+    <div class="boot-bar-wrap"><div class="boot-bar-fill"></div></div>
+    <button class="boot-skip" id="boot-skip" type="button">Skip intro</button>
+  </div>
+
+  <!-- ── PARTICLE CANVAS ─────────────────────────────── -->
+  <canvas id="bg"></canvas>
+
+  <!-- ── SITE ────────────────────────────────────────── -->
+  <div id="site">
+
+    <!-- ── NAV ─────────────────────────────────────── -->
+    <header id="nav">
+      <div id="nav-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+      <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+          <span class="nl-mark">JA</span>
+          <span class="nl-name">Junayed Ahmed</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html#hero">Home</a>
+          <a href="index.html#journey">Journey</a>
+          <a href="index.html#research">Research</a>
+          <a href="index.html#byaaw">BYAAW</a>
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#experience">Experience</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <button class="nav-hamburger" id="nav-hamburger"
+                aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+        <a class="nav-cta" href="index.html#contact">Get in touch</a>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="navigation" aria-label="Mobile navigation">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#journey">Journey</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#byaaw">BYAAW</a>
         <a href="index.html#projects">Projects</a>
         <a href="index.html#experience">Experience</a>
         <a href="index.html#contact">Contact</a>
       </div>
-    </nav>
-  </header>
+    </header>
 
-  <main class="container">
-    <a class="back" href="index.html#experience">← Back to Experience</a>
-
-    <section class="section project-page">
-      <!-- Experience logo (top center) -->
-      <div class="experience-hero">
-        <img id="e-image" alt="Experience logo" />
+    <!-- ── HERO ────────────────────────────────────── -->
+    <div id="det-hero">
+      <div class="det-hero-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <a class="det-back" href="index.html#experience">
+          <span aria-hidden="true">←</span> All Experience
+        </a>
+        <div class="det-hero-inner">
+          <div class="det-logo-wrap">
+            <img id="e-image" alt="" loading="eager" />
+          </div>
+          <div class="det-hero-content">
+            <div class="det-tags" id="e-tags" aria-label="Role categories"></div>
+            <h1 class="det-title" id="e-title">Loading…</h1>
+            <p class="det-org" id="e-org"></p>
+            <p class="det-sub" id="e-subtitle"></p>
+          </div>
+        </div>
+        <div class="det-metrics" id="e-metrics" aria-label="Key metrics"></div>
       </div>
+    </div>
 
-      <h1 id="e-title">Loading…</h1>
-      <p class="subtitle" id="e-subtitle"></p>
+    <!-- ── BODY ─────────────────────────────────────── -->
+    <div class="det-body">
+      <div class="wrap det-wrap">
 
-      <div class="tags" id="e-tags"></div>
+        <main class="det-main">
 
-      <div class="project-block">
-        <h2>Responsibilities</h2>
-        <ul id="e-bullets"></ul>
+          <section class="det-sec" id="sec-about">
+            <span class="det-sec-label">About the Organization</span>
+            <p class="det-sec-text" id="e-about"></p>
+          </section>
+
+          <section class="det-sec" id="sec-challenge">
+            <span class="det-sec-label">The Challenge</span>
+            <p class="det-sec-text" id="e-challenge"></p>
+          </section>
+
+          <section class="det-sec" id="sec-role">
+            <span class="det-sec-label">My Role</span>
+            <p class="det-sec-text" id="e-role"></p>
+          </section>
+
+          <section class="det-sec" id="sec-contributions">
+            <span class="det-sec-label">Key Contributions</span>
+            <div class="det-cards" id="e-contributions" aria-label="Key contributions"></div>
+          </section>
+
+          <section class="det-sec" id="sec-impact">
+            <span class="det-sec-label">Outcomes &amp; Impact</span>
+            <p class="det-sec-text" id="e-impact"></p>
+          </section>
+
+          <section class="det-sec det-sec-last" id="sec-reflection">
+            <span class="det-sec-label">Key Takeaways</span>
+            <blockquote class="det-quote" id="e-reflection"></blockquote>
+          </section>
+
+        </main>
+
+        <aside class="det-sidebar" aria-label="Experience summary">
+          <div class="det-sb-block" id="sb-skills">
+            <h3 class="det-sb-title">Skills Applied</h3>
+            <div class="det-skills" id="e-skills"></div>
+          </div>
+          <div class="det-sb-block det-sb-links" id="sb-links" hidden>
+            <h3 class="det-sb-title">Links</h3>
+            <div id="e-links"></div>
+          </div>
+        </aside>
+
       </div>
+    </div>
 
-      <div class="project-block">
-        <h2>Skills</h2>
-        <div class="tags" id="e-skills"></div>
+    <!-- ── PREV / NEXT ──────────────────────────────── -->
+    <div class="det-navrow">
+      <div class="wrap det-navrow-inner">
+        <a class="det-navbtn" id="e-prev" href="#">
+          <span class="det-navbtn-arrow" aria-hidden="true">←</span>
+          <div class="det-navbtn-text">
+            <span class="det-navbtn-dir">Previous</span>
+            <span class="det-navbtn-name" id="e-prev-name"></span>
+          </div>
+        </a>
+        <a class="det-navbtn det-navbtn-r" id="e-next" href="#">
+          <div class="det-navbtn-text">
+            <span class="det-navbtn-dir">Next</span>
+            <span class="det-navbtn-name" id="e-next-name"></span>
+          </div>
+          <span class="det-navbtn-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <footer class="container footer">
-    <span class="muted">© <span id="year"></span> Your Name</span>
-  </footer>
+    <!-- ── CTA ─────────────────────────────────────── -->
+    <div class="det-cta">
+      <div class="wrap det-cta-inner">
+        <h2 class="det-cta-title">Interested in working together?</h2>
+        <p class="det-cta-sub">Open to research collaborations, advocacy partnerships, and public health opportunities.</p>
+        <div class="det-cta-btns">
+          <a href="index.html#contact" class="det-cta-primary">Get in Touch</a>
+          <a href="index.html#projects" class="det-cta-secondary">View Projects</a>
+          <a href="index.html#research" class="det-cta-secondary">Explore Research</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ───────────────────────────────────── -->
+    <footer id="footer">
+      <div class="wrap footer-inner">
+        <span>© <span id="yr"></span> Junayed Ahmed</span>
+        <span class="footer-right">Built with purpose · Edmonton, AB</span>
+      </div>
+    </footer>
+
+  </div><!-- /#site -->
 
   <script src="experience.js"></script>
   <script src="script.js"></script>
