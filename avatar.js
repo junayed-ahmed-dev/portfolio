@@ -85,8 +85,8 @@ console.log('[Avatar] Three.js r' + THREE.REVISION);
   disc.renderOrder = -1;
   scene.add(disc);
 
-  // ── Particles ─────────────────────────────────────────────────────
-  const NP  = mobile() ? 30 : 55;
+  // ── Ambient data sparks ───────────────────────────────────────────
+  const NP  = mobile() ? 4 : 6;
   const pos = new Float32Array(NP * 3);
   const col = new Float32Array(NP * 3);
   const ang = new Float32Array(NP);
@@ -96,17 +96,17 @@ console.log('[Avatar] Three.js r' + THREE.REVISION);
 
   const pal = [
     new THREE.Color(0x7C3AED), new THREE.Color(0x06B6D4),
-    new THREE.Color(0xFBBF24), new THREE.Color(0xC4B5FD), new THREE.Color(0x67E8F9),
+    new THREE.Color(0xC4B5FD), new THREE.Color(0x67E8F9),
   ];
 
   for (let i = 0; i < NP; i++) {
     ang[i] = Math.random() * Math.PI * 2;
-    rad[i] = 0.4 + Math.random() * 1.0;
-    spd[i] = 0.1  + Math.random() * 0.2;
-    py[i]  = 0.1  + Math.random() * 2.4;
+    rad[i] = 0.85 + Math.random() * 0.75;
+    spd[i] = 0.06 + Math.random() * 0.12;
+    py[i]  = 0.2  + Math.random() * 2.1;
     pos[i*3]   = Math.cos(ang[i]) * rad[i];
     pos[i*3+1] = py[i];
-    pos[i*3+2] = Math.sin(ang[i]) * rad[i];
+    pos[i*3+2] = -0.45 + Math.sin(ang[i]) * 0.45;
     const c = pal[i % pal.length];
     col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
   }
@@ -114,11 +114,43 @@ console.log('[Avatar] Three.js r' + THREE.REVISION);
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   geo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
   const mat = new THREE.PointsMaterial({
-    size: 0.045, vertexColors: true,
-    transparent: true, opacity: 0.9,
+    size: 0.028, vertexColors: true,
+    transparent: true, opacity: 0.38,
     sizeAttenuation: true, depthWrite: false,
+    blending: THREE.AdditiveBlending,
   });
   scene.add(new THREE.Points(geo, mat));
+
+  const NL = Math.floor(NP / 2);
+  const linePos = new Float32Array(NL * 2 * 3);
+  const lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
+  const lineMat = new THREE.LineBasicMaterial({
+    color: 0x67E8F9,
+    transparent: true,
+    opacity: 0.12,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+  scene.add(new THREE.LineSegments(lineGeo, lineMat));
+
+  const hologramRings = [0.74, 1.05].map((radius, i) => {
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(radius, 0.0035, 8, 96),
+      new THREE.MeshBasicMaterial({
+        color: i === 1 ? 0x7C3AED : 0x67E8F9,
+        transparent: true,
+        opacity: i === 1 ? 0.10 : 0.14,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      })
+    );
+    ring.position.set(0, 1.1, -0.72 - i * 0.03);
+    ring.scale.y = 0.32;
+    ring.renderOrder = -2;
+    scene.add(ring);
+    return ring;
+  });
 
   // ── State ─────────────────────────────────────────────────────────
   const clock = new THREE.Clock();
@@ -213,28 +245,39 @@ console.log('[Avatar] Three.js r' + THREE.REVISION);
 
   // ── Wave ──────────────────────────────────────────────────────────
   function playWave() {
-    if (isWaving || !waveAction) return;
+    if (isWaving) return;
     isWaving = true;
+    pingBubble(); pingBadge();
+    if (!waveAction) {
+      setTimeout(() => { isWaving = false; }, 1400);
+      return;
+    }
     if (idleAction) idleAction.crossFadeTo(waveAction, 0.3, true);
     waveAction.reset().play();
-    pingBubble(); pingBadge();
   }
   function returnToIdle() {
-    if (idleAction) { waveAction.crossFadeTo(idleAction, 0.5, true); idleAction.play(); }
+    if (idleAction && waveAction) { waveAction.crossFadeTo(idleAction, 0.5, true); idleAction.play(); }
     isWaving = false;
   }
   function pingBubble() {
-    const el = document.getElementById('sb-hi'); if (!el) return;
-    el.textContent = "Hi, I'm Junayed 👋";
+    const el = document.querySelector('.avatar-console-head strong'); if (!el) return;
+    const original = el.textContent;
+    el.textContent = "HELLO_WORLD";
     el.classList.add('speech-ping');
-    setTimeout(() => { el.textContent = "Hi, I'm Junayed"; el.classList.remove('speech-ping'); }, 2600);
+    setTimeout(() => { el.textContent = original; el.classList.remove('speech-ping'); }, 1800);
   }
   function pingBadge() {
     const em = document.querySelector('.wave-emoji'); if (!em) return;
     em.classList.remove('waving'); void em.offsetWidth; em.classList.add('waving');
+    const lbl = document.querySelector('.wave-label');
+    if (lbl) {
+      const original = lbl.textContent;
+      lbl.textContent = 'Hello!';
+      setTimeout(() => { lbl.textContent = original; }, 1400);
+    }
   }
   window.avatarController = { wave: playWave };
-  canvas.addEventListener('click', () => { if (!isWaving) playWave(); });
+  wrapper.addEventListener('click', () => { if (!isWaving) playWave(); });
 
   // Auto-wave when hero canvas enters view (fires on first load since hero is above fold)
   const heroEl = document.getElementById('hero');
@@ -265,15 +308,32 @@ console.log('[Avatar] Three.js r' + THREE.REVISION);
     }
     if (root && !isWaving) root.rotation.y = Math.sin(t * 0.28) * 0.025;
 
-    // Particles
+    // Ambient tech field
     for (let i = 0; i < NP; i++) {
-      ang[i] += delta * spd[i] * 0.25;
+      ang[i] += delta * spd[i] * 0.18;
       posArr[i*3]   = Math.cos(ang[i]) * rad[i];
-      posArr[i*3+1] = py[i] + Math.sin(t * spd[i] + i * 1.3) * 0.12;
-      posArr[i*3+2] = Math.sin(ang[i]) * rad[i];
+      posArr[i*3+1] = py[i] + Math.sin(t * spd[i] + i * 1.3) * 0.08;
+      posArr[i*3+2] = -0.45 + Math.sin(ang[i]) * 0.45;
     }
     geo.attributes.position.needsUpdate = true;
-    mat.opacity    = 0.75 + Math.sin(t * 0.65) * 0.18;
+    for (let i = 0; i < NL; i++) {
+      const a = i;
+      const b = (i + 7) % NP;
+      const base = i * 6;
+      linePos[base]     = posArr[a*3];
+      linePos[base + 1] = posArr[a*3+1];
+      linePos[base + 2] = posArr[a*3+2];
+      linePos[base + 3] = posArr[b*3];
+      linePos[base + 4] = posArr[b*3+1];
+      linePos[base + 5] = posArr[b*3+2];
+    }
+    lineGeo.attributes.position.needsUpdate = true;
+    mat.opacity    = 0.32 + Math.sin(t * 0.45) * 0.06;
+    lineMat.opacity = 0.045 + Math.sin(t * 0.38 + 0.7) * 0.018;
+    hologramRings.forEach((ring, i) => {
+      ring.rotation.z = t * (0.08 + i * 0.025) * (i % 2 ? -1 : 1);
+      ring.material.opacity = (i === 1 ? 0.14 : 0.20) + Math.sin(t * 0.55 + i) * 0.035;
+    });
     rim.intensity  = 3.5  + Math.sin(t * 1.2)  * 0.6;
     fill.intensity = 2.0  + Math.sin(t * 0.8 + 1.1) * 0.4;
 

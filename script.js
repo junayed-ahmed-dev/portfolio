@@ -597,6 +597,102 @@ if (yr) yr.textContent = new Date().getFullYear();
 })();
 
 /* ════════════════════════════════════════════════════════
+   AVATAR BRIEFING — typed profile responses
+   ════════════════════════════════════════════════════════ */
+(function avatarBriefing() {
+  const line = document.getElementById('briefing-line');
+  const buttons = document.querySelectorAll('.bc-topic');
+  const voiceToggle = document.getElementById('briefing-voice-toggle');
+  if (!line || !buttons.length) return;
+
+  const responses = {
+    cs: 'I am a computer science student building software across AI, systems, data, and product experiences.',
+    impact: 'Public health is not my main field; it is the lens that makes me care about who the software serves.',
+    projects: 'My strongest work spans AI agents, database systems, Android apps, C programming, and advocacy tools.',
+    work: 'I am looking for software internships, developer roles, and teams where technical work has real-world users.',
+  };
+  const voiceClips = {
+    cs: 'assets/Cs-focus.m4a',
+    impact: 'assets/Impact-lens.m4a',
+    projects: 'assets/projects.m4a',
+    work: 'assets/opportuities.m4a',
+  };
+
+  let typeTimer = null;
+  let voiceEnabled = true;
+  let activeAudio = null;
+
+  function speakOutLoud(text) {
+    if (!voiceEnabled || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.96;
+    utterance.pitch = 0.92;
+    utterance.volume = 0.9;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => /en(-|_)CA|en(-|_)US|en(-|_)GB/i.test(v.lang));
+    if (preferred) utterance.voice = preferred;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function playVoiceClip(topic, fallbackText) {
+    if (!voiceEnabled) return;
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+    }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+    const src = voiceClips[topic];
+    if (!src) {
+      speakOutLoud(fallbackText);
+      return;
+    }
+
+    activeAudio = new Audio(src);
+    activeAudio.preload = 'auto';
+    activeAudio.play().catch(() => speakOutLoud(fallbackText));
+  }
+
+  function speak(topic) {
+    const text = responses[topic] || responses.cs;
+    clearTimeout(typeTimer);
+    line.textContent = '';
+    buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.topic === topic));
+    if (window.avatarController && typeof window.avatarController.wave === 'function') {
+      window.avatarController.wave();
+    }
+    playVoiceClip(topic, text);
+
+    let i = 0;
+    function type() {
+      line.textContent = text.slice(0, i++);
+      if (i <= text.length) typeTimer = setTimeout(type, 18);
+    }
+    type();
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => speak(btn.dataset.topic));
+  });
+
+  if (voiceToggle) {
+    voiceToggle.addEventListener('click', () => {
+      voiceEnabled = !voiceEnabled;
+      const muted = !voiceEnabled;
+      voiceToggle.setAttribute('aria-pressed', String(muted));
+      voiceToggle.setAttribute('aria-label', muted ? 'Unmute avatar audio' : 'Mute avatar audio');
+      voiceToggle.lastChild.textContent = muted ? ' Unmute audio' : ' Mute audio';
+      if (activeAudio) {
+        activeAudio.pause();
+        activeAudio.currentTime = 0;
+      }
+      if (!voiceEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+    });
+  }
+})();
+
+/* ════════════════════════════════════════════════════════
    TIMELINE — accordion expand / collapse
    ════════════════════════════════════════════════════════ */
 (function timeline() {

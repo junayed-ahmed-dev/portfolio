@@ -130,15 +130,25 @@
 
         <!-- RIGHT — 3D avatar -->
         <div class="hero-avatar-col">
-          <div class="speech-bubble hero-bubble">
-            <p class="sb-hi" id="sb-hi">Hi, I'm Junayed</p>
-            <p class="sb-body">
-              I turn research, advocacy, and lived experience into meaningful
-              public health and social impact — from Bangladesh to Canada.
-            </p>
+          <div class="avatar-console-head">
+            <span>JUNAYED.AHMED</span>
+            <strong>CS_BUILDER</strong>
           </div>
 
           <div class="avatar-canvas-wrap" id="avatar-canvas-wrap">
+            <div class="avatar-datacenter-bg" aria-hidden="true">
+              <span class="dc-rack dc-rack-l1"></span>
+              <span class="dc-rack dc-rack-l2"></span>
+              <span class="dc-rack dc-rack-l3"></span>
+              <span class="dc-rack dc-rack-r1"></span>
+              <span class="dc-rack dc-rack-r2"></span>
+              <span class="dc-rack dc-rack-r3"></span>
+              <span class="dc-aisle"></span>
+            </div>
+            <div class="avatar-frame-meta avatar-frame-meta--top">
+              <span>3D PROFILE</span>
+              <span>ONLINE</span>
+            </div>
             <canvas
               id="avatar-canvas"
               aria-label="Interactive 3D avatar of Junayed Ahmed — click to wave"
@@ -147,20 +157,32 @@
               <div class="al-dot-ring" aria-hidden="true">
                 <div></div><div></div><div></div><div></div>
               </div>
-              <span>Loading avatar…</span>
+              <span>Loading 3D profile…</span>
             </div>
             <div class="avatar-wave-badge" id="avatar-wave" aria-hidden="true">
               <span class="wave-emoji">👋</span>
               <span class="wave-label">Click to wave!</span>
             </div>
+            <div class="avatar-frame-meta avatar-frame-meta--bottom">
+              <span>AI</span>
+              <span>Systems</span>
+              <span>Data</span>
+              <span>Impact</span>
+            </div>
+          </div>
+
+          <div class="avatar-status" aria-label="Current focus">
+            <span class="as-dot" aria-hidden="true"></span>
+            <span>Building AI, systems, and impact-focused tools</span>
           </div>
 
           <div class="avatar-pills">
-            <span class="av-pill">Public Health</span>
-            <span class="av-pill">Bangladesh</span>
-            <span class="av-pill">Canada</span>
-            <span class="av-pill">Autism Welfare</span>
-            <span class="av-pill">CS &amp; Public Health</span>
+            <span class="av-pill av-pill-core">Python</span>
+            <span class="av-pill av-pill-core">AI / ML</span>
+            <span class="av-pill av-pill-core">Systems</span>
+            <span class="av-pill av-pill-core">JavaScript</span>
+            <span class="av-pill av-pill-core">Data</span>
+            <span class="av-pill">Public Health Lens</span>
           </div>
         </div>
 
@@ -190,6 +212,48 @@
 
       <div class="scroll-cue" aria-hidden="true">
         <div class="sc-mouse"><div class="sc-dot"></div></div>
+      </div>
+    </section>
+
+    <!-- ─── AVATAR BRIEFING ───────────────────────── -->
+    <section id="avatar-briefing" aria-labelledby="avatar-briefing-heading">
+      <div class="wrap">
+        <div class="briefing-grid reveal">
+          <div class="briefing-copy">
+            <span class="sec-tag">Interactive Profile</span>
+            <h2 id="avatar-briefing-heading">Ask the avatar<br>what I build.</h2>
+            <p>
+              A short guided briefing about my CS work, public health lens,
+              and the kinds of teams I want to contribute to.
+            </p>
+          </div>
+
+          <div class="briefing-console" aria-live="polite">
+            <div class="bc-top">
+              <span>PROFILE_VOICE</span>
+              <button class="bc-voice-toggle" id="briefing-voice-toggle" type="button" aria-pressed="false" aria-label="Mute avatar audio">
+                <i aria-hidden="true"></i> Mute audio
+              </button>
+            </div>
+            <div class="bc-screen">
+              <div class="bc-avatar-mark" aria-hidden="true">JA</div>
+              <p class="bc-line" id="briefing-line">
+                I am a computer science student building software across AI,
+                systems, data, and product experiences.
+              </p>
+              <div class="bc-wave" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="bc-actions" role="group" aria-label="Choose avatar briefing topic">
+              <button class="bc-topic active" type="button" data-topic="cs">CS Focus</button>
+              <button class="bc-topic" type="button" data-topic="impact">Impact Lens</button>
+              <button class="bc-topic" type="button" data-topic="projects">Projects</button>
+              <button class="bc-topic" type="button" data-topic="work">Opportunities</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
